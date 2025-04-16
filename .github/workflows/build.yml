@@ -3,11 +3,20 @@ name: build
 on: 
     push:
     workflow_dispatch:
-
+    # schedule:
+    #     - cron: "*/5 * * * *"
+    # workflow_call:
+    pull_request:
+        branches: ["main"]
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
             - name: checkout
               uses: actions/checkout@v4
+
+            - name: Setup python
+              uses: actions/setup-python@v4
+              with:
+                python-version: '3.10'
 
